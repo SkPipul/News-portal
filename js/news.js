@@ -8,7 +8,7 @@ const loadAllNews = () =>{
 const displayAllNews = newsAll => {
     const newsList = document.getElementById('news-list');
     newsAll.forEach(news =>{
-        console.log(news);
+        // console.log(news);
         const newsDiv = document.createElement('div')
         newsDiv.classList.add('news')
         newsDiv.innerHTML = `
@@ -40,7 +40,7 @@ const displayNews = totalNews =>{
         alertSite.classList.add('d-none');
     }
     totalNews.forEach(news =>{
-        console.log(news);
+        // console.log(news);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card');
         newsDiv.innerHTML = `
@@ -61,15 +61,33 @@ const displayNews = totalNews =>{
                     <h6>${news.author.name}</h6>
                     </div>
                     <h5><i class="bi bi-eye-fill"></i>${news.total_view}</h5>
-                    <button class="btn btn-primary" onclick="loadNewsDetails()">Details</button>
+                    <button type="button" class="btn btn-primary" onclick="loadNewsDetails('${news._id}')" data-bs-toggle="modal" data-bs-target="#newsModal">Show Details</button>
                   </div>
                 </div>
         </div>
         `;
         newsCard.appendChild(newsDiv)
     })
+}
 
-    
+const loadNewsDetails = async id => {
+  const url = ` https://openapi.programming-hero.com/api/news/${id}`
+  const res = await fetch(url);
+  const data = await res.json();
+  displayAllDetails(data.data[0]);
+}
+
+const displayAllDetails = news => {
+  console.log(news);
+  const modalTitle = document.getElementById("newsModalLabel")
+    modalTitle.innerText = news.author.name;
+    const newsDetails = document.getElementById('news-detail');
+    newsDetails.innerHTML = `
+    <img class="img-fluid" src="${news.author.img}"></img>
+    <p>${news.author.published_date}</p>
+    <h6>views: ${news.total_view}</h6>
+    <h4>Badge: ${news.rating.badge}</h4>
+    `
 }
 
 loadAllNews();
