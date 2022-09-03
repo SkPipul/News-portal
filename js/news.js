@@ -58,9 +58,9 @@ const displayNews = totalNews =>{
                   <div class="d-flex justify-content-around align-items-center">
                     <div>
                     <img class="rounded-circle logo" src="${news.author.img}" alt="">
-                    <h6>${news.author.name}</h6>
+                    <h6>${news.author.name ? news.author.name : 'No data given'}</h6>
                     </div>
-                    <h5><i class="bi bi-eye-fill"></i>${news.total_view}</h5>
+                    <h5><i class="bi bi-eye-fill"></i>${news.total_view ? news.total_view : 'No data here'}</h5>
                     <button type="button" class="btn btn-primary" onclick="loadNewsDetails('${news._id}')" data-bs-toggle="modal" data-bs-target="#newsModal">Show Details</button>
                   </div>
                 </div>
@@ -84,8 +84,8 @@ const displayAllDetails = news => {
     const newsDetails = document.getElementById('news-detail');
     newsDetails.innerHTML = `
     <img class="img-fluid" src="${news.author.img}"></img>
-    <p>${news.author.published_date}</p>
-    <h6>views: ${news.total_view}</h6>
+    <p>${news.author.published_date ? news.author.published_date : 'No published date or time availble'}</p>
+    <h6>views: ${news.total_view ? news.total_view : 'No views'}</h6>
     <h4>Badge: ${news.rating.badge}</h4>
     `
 }
