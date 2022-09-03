@@ -61,7 +61,7 @@ const displayNews = totalNews =>{
                     <img class="rounded-circle logo" src="${news.author.img}" alt="">
                     <h6>${news.author.name ? news.author.name : 'No data given'}</h6>
                     </div>
-                    <h5><i class="bi bi-eye-fill"></i>${news.total_view ? news.total_view : 'No data here'}</h5>
+                    <h5><i class="fa-solid fa-eye"></i> ${news.total_view ? news.total_view : 'No data here'}</h5>
                     <button type="button" class="btn btn-primary" onclick="loadNewsDetails('${news._id}')" data-bs-toggle="modal" data-bs-target="#newsModal">Show Details</button>
                   </div>
                 </div>
@@ -102,5 +102,12 @@ const loadingSpinner = isLoading => {
   }
 }
 
+// const calculateNews = document.getElementById('calculate-news');
+
+const blogSection = document.getElementById('blog').addEventListener('click', function(){
+  window.location.href = 'blog.html'
+})
+
 loadAllNews();
+
 
