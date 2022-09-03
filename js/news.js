@@ -12,9 +12,26 @@ const displayAllNews = newsAll => {
         const newsDiv = document.createElement('div')
         newsDiv.classList.add('news')
         newsDiv.innerHTML = `
+        <div onclick="preparedNews('${news.category_id}')">
         <h5>${news.category_name}</h5>
+        <?div>
         `;
         newsList.appendChild(newsDiv);
+    })
+}
+
+const preparedNews = (newsId) =>{
+    const url = `https://openapi.programming-hero.com/api/news/category/${newsId}`;
+
+    // console.log(url)
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayNews(data.data))
+}
+
+const displayNews = totalNews =>{
+    totalNews.forEach(news =>{
+        console.log(news);
     })
 }
 
