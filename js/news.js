@@ -32,6 +32,13 @@ const preparedNews = (newsId) =>{
 const displayNews = totalNews =>{
     const newsCard = document.getElementById('news-card');
     newsCard.innerHTML = ``;
+    const alertSite = document.getElementById('alert-site');
+    if(totalNews.length === 0){
+        alertSite.classList.remove('d-none');
+    }
+    else{
+        alertSite.classList.add('d-none');
+    }
     totalNews.forEach(news =>{
         console.log(news);
         const newsDiv = document.createElement('div');
@@ -46,7 +53,7 @@ const displayNews = totalNews =>{
                   <div class="card-body">
                     <h5 class="card-title">${news.title}</h5>
                     <p class="card-text p-text">${news.details.slice(0, 150)}...</p>
-                    
+        
                   </div>
                   <div class="d-flex justify-content-around align-items-center">
                     <div>
@@ -54,7 +61,7 @@ const displayNews = totalNews =>{
                     <h6>${news.author.name}</h6>
                     </div>
                     <h5><i class="bi bi-eye-fill"></i>${news.total_view}</h5>
-                    <button class="btn btn-primary">Details</button>
+                    <button class="btn btn-primary" onclick="loadNewsDetails()">Details</button>
                   </div>
                 </div>
         </div>
