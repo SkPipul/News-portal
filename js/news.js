@@ -30,8 +30,34 @@ const preparedNews = (newsId) =>{
 }
 
 const displayNews = totalNews =>{
+    const newsCard = document.getElementById('news-card');
+    newsCard.innerHTML = ``;
     totalNews.forEach(news =>{
         console.log(news);
+        const newsDiv = document.createElement('div');
+        newsDiv.classList.add('card');
+        newsDiv.innerHTML = `
+        
+        <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="${news.image_url}" class="w-150 h-100 img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">${news.title}</h5>
+                    <p class="card-text p-text">${news.details.slice(0, 150)}...</p>
+                    
+                  </div>
+                  <div>
+                    <img class="rounded-circle logo" src="${news.author.img}" alt="">
+                    <h6>${news.author.name}</h6>
+                    <h5><i class="fa-regular fa-eye"></i>${news.total_view}</h5>
+                    <button></button>
+                  </div>
+                </div>
+        </div>
+        `;
+        newsCard.appendChild(newsDiv)
     })
 }
 
