@@ -21,6 +21,7 @@ const displayAllNews = newsAll => {
 }
 
 const preparedNews = (newsId) =>{
+  loadingSpinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${newsId}`;
 
     // console.log(url)
@@ -68,6 +69,7 @@ const displayNews = totalNews =>{
         `;
         newsCard.appendChild(newsDiv)
     })
+    loadingSpinner(false)
 }
 
 const loadNewsDetails = async id => {
@@ -84,10 +86,20 @@ const displayAllDetails = news => {
     const newsDetails = document.getElementById('news-detail');
     newsDetails.innerHTML = `
     <img class="img-fluid" src="${news.author.img}"></img>
-    <p>${news.author.published_date ? news.author.published_date : 'No published date or time availble'}</p>
+    <p>${news.author.published_date ? news.author.published_date : 'No data found'}</p>
     <h6>views: ${news.total_view ? news.total_view : 'No views'}</h6>
     <h4>Badge: ${news.rating.badge}</h4>
     `
+}
+
+const loadingSpinner = isLoading => {
+  const spinner = document.getElementById('spinner');
+  if(isLoading){
+    spinner.classList.remove('d-none')
+  }
+  else{
+    spinner.classList.add('d-none')
+  }
 }
 
 loadAllNews();
