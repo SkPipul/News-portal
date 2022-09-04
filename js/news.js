@@ -33,6 +33,8 @@ const preparedNews = (newsId) =>{
 }
 
 const displayNews = totalNews =>{
+   const totalNumberOfNews = totalNews.length;
+   document.getElementById('calculate-news').innerText = totalNumberOfNews;
     const newsCard = document.getElementById('news-card');
     newsCard.innerHTML = ``;
     const alertSite = document.getElementById('alert-site');
@@ -104,8 +106,6 @@ const loadingSpinner = isLoading => {
     spinner.classList.add('d-none')
   }
 }
-
-// const calculateNews = document.getElementById('calculate-news');
 
 const blogSection = document.getElementById('blog').addEventListener('click', function(){
   window.location.href = 'blog.html'
