@@ -3,6 +3,7 @@ const loadAllNews = () =>{
     fetch(url)
     .then(res => res.json())
     .then(data => displayAllNews(data.data.news_category))
+    .catch(error => console.log(error));
 }
 
 const displayAllNews = newsAll => {
@@ -28,6 +29,7 @@ const preparedNews = (newsId) =>{
     fetch(url)
     .then(res => res.json())
     .then(data => displayNews(data.data))
+    .catch(error => console.log(error));
 }
 
 const displayNews = totalNews =>{
@@ -77,10 +79,11 @@ const loadNewsDetails = async id => {
   const res = await fetch(url);
   const data = await res.json();
   displayAllDetails(data.data[0]);
+  
 }
 
 const displayAllDetails = news => {
-  console.log(news);
+  // console.log(news);
   const modalTitle = document.getElementById("newsModalLabel")
     modalTitle.innerText = news.author.name;
     const newsDetails = document.getElementById('news-detail');
